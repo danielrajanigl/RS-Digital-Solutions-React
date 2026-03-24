@@ -3838,6 +3838,11 @@ html.light-theme .newsletter-form input {
         margin-right: 0;
     }
 
+    .theme-toggle-wrapper {
+        transform: scale(0.75);
+        transform-origin: center;
+    }
+
     .hamburger {
         margin-left: 16px;
     }

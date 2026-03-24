@@ -27,7 +27,7 @@ export default function ThemeToggle() {
   const toggle = () => setIsDark(prev => !prev);
 
   return (
-    <div className="theme-toggle-wrapper" style={{ display: 'flex', alignItems: 'center' }}>
+    <div className="theme-toggle-wrapper">
       <LiquidMetalButton
         viewMode="icon"
         label={isDark ? 'Light Mode' : 'Dark Mode'}
