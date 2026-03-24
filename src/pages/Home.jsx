@@ -188,14 +188,12 @@ export default function Home() {
 
   return (
     <>
-      <Preloader />
-
       {/* Hero Section */}
-      <section id="hero" className="hero-section">
+      <section id="hero" className="hero-section" style={{ opacity: 1, visibility: 'visible', position: 'relative', minHeight: '100vh' }}>
         <div ref={auroraRef} className="aurora-canvas"></div>
         <div className="hero-overlay"></div>
-        <div className="hero-content" ref={heroContentRef}>
-          <div className="hero-float-wrapper animated">
+        <div className="hero-content" ref={heroContentRef} style={{ opacity: 1, visibility: 'visible', position: 'relative', zIndex: 2 }}>
+          <div className="hero-float-wrapper" style={{ opacity: 1, visibility: 'visible', transform: 'none' }}>
             <h1 className="hero-title-new">
               Wir erschaffen
               <span className="hero-gradient-text">digitale Meisterwerke</span>
@@ -234,7 +232,7 @@ export default function Home() {
       <section className="cta-section">
         <div className="cta-bg-effect"></div>
         <div className="container">
-          <div className="cta-content" data-animate="fade-up">
+          <div className="cta-content" style={{ opacity: 1, visibility: 'visible', transform: 'none' }}>
             <h2>Bereit, Ihre digitale Präsenz<br/><span className="highlight">auf das nächste Level</span> zu bringen?</h2>
             <p>Lassen Sie uns in einem unverbindlichen Gespräch herausfinden, wie wir Ihr Unternehmen online nach vorne bringen können.</p>
             <div className="cta-buttons">
@@ -249,7 +247,7 @@ export default function Home() {
       <section id="kontakt" className="kontakt-section">
         <div className="container">
           <div className="kontakt-grid">
-            <div className="kontakt-info" data-animate="fade-right">
+            <div className="kontakt-info" style={{ opacity: 1, visibility: 'visible', transform: 'none' }}>
               <span className="section-tag">Kontakt</span>
               <h2 className="section-title">Lassen Sie uns <span className="highlight">sprechen</span></h2>
               <p className="kontakt-text">
@@ -285,7 +283,7 @@ export default function Home() {
                 <a href="#" className="social-link"><i className="fab fa-facebook-f"></i></a>
               </div>
             </div>
-            <div className="kontakt-form-wrapper" data-animate="fade-left">
+            <div className="kontakt-form-wrapper" style={{ opacity: 1, visibility: 'visible', transform: 'none' }}>
               <form className="kontakt-form" id="contactForm" onSubmit={handleSubmit}>
                 <div className="form-row">
                   <div className="form-group">
