@@ -28,7 +28,16 @@ export function useScrollAnimations() {
             el.classList.remove('animated');
           }
         });
-      }, { root: null, rootMargin: '0px 0px -60px 0px', threshold: 0.15 });
+      }, { root: null, rootMargin: '0px 0px -60px 0px', threshold: 0.01 });
+
+      // Force-check elements already in viewport
+      animatedElements.forEach(el => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight && rect.bottom > 0) {
+          const delay = parseInt(el.getAttribute('data-delay') || 0);
+          setTimeout(() => el.classList.add('animated'), delay);
+        }
+      });
 
       animatedElements.forEach(el => observer.observe(el));
 
