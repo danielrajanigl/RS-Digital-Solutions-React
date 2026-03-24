@@ -185,23 +185,23 @@ export default function Home() {
         <div ref={auroraRef} className="aurora-canvas"></div>
         <div className="hero-overlay"></div>
         <div className="hero-content" ref={heroContentRef}>
-          <div className="hero-float-wrapper" data-animate="fade-up" data-delay="100">
+          <div className="hero-float-wrapper animated">
             <h1 className="hero-title-new">
               Wir erschaffen
               <span className="hero-gradient-text">digitale Meisterwerke</span>
               für Ihr Unternehmen.
             </h1>
-            <p className="hero-subtitle-new" data-animate="fade-up" data-delay="200">
+            <p className="hero-subtitle-new">
               Hochprofessionelle Websites, Online-Shops &amp; intelligente KI-Lösungen –
               maßgeschneidert und <strong>in nur 48 Stunden live.</strong>
             </p>
           </div>
-          <div className="hero-buttons-new" data-animate="fade-up" data-delay="300" style={{ display: 'flex', gap: '16px', justifyContent: 'center', flexWrap: 'wrap' }}>
+          <div className="hero-buttons-new" style={{ display: 'flex', gap: '16px', justifyContent: 'center', flexWrap: 'wrap' }}>
             <LiquidMetalButton label="Projekt starten" onClick={() => { const el = document.getElementById('kontakt'); if (el) el.scrollIntoView({ behavior: 'smooth' }); }} />
             <LiquidMetalButton label="Leistungen" onClick={() => navigate('/leistungen')} />
           </div>
-          <div className="hero-divider" data-animate="fade-up" data-delay="350"></div>
-          <div className="hero-stats-new" data-animate="fade-up" data-delay="400">
+          <div className="hero-divider"></div>
+          <div className="hero-stats-new">
             <div className="hero-stat">
               <span className="hero-stat-value" data-count="48">0</span><span className="hero-stat-unit">h</span>
               <span className="hero-stat-label">bis zur Liveschaltung</span>
