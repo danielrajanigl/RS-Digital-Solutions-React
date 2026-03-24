@@ -171,6 +171,10 @@ ul {
     width: 100%;
     z-index: 1000;
     padding: 20px 0;
+    background: transparent;
+}
+
+.navbar.scrolled {
     background: #000000;
 }
 
@@ -3179,6 +3183,10 @@ html.light-theme .preloader-bar-fill {
 
 /* Navigation */
 html.light-theme .navbar {
+    background: transparent;
+}
+
+html.light-theme .navbar.scrolled {
     background: #ffffff;
 }
 
