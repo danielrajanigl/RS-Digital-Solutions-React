@@ -30,6 +30,7 @@ export default function ThemeToggle() {
     <div className="theme-toggle-wrapper">
       <LiquidMetalButton
         viewMode="icon"
+        icon={isDark ? 'sun' : 'moon'}
         label={isDark ? 'Light Mode' : 'Dark Mode'}
         onClick={toggle}
       />

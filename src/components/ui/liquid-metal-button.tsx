@@ -1,5 +1,5 @@
 import { liquidMetalFragmentShader, ShaderMount } from "@paper-design/shaders";
-import { Sparkles } from "lucide-react";
+import { Sparkles, Sun, Moon } from "lucide-react";
 import type React from "react";
 import { useEffect, useMemo, useRef, useState } from "react";
 
@@ -7,12 +7,14 @@ interface LiquidMetalButtonProps {
   label?: string;
   onClick?: () => void;
   viewMode?: "text" | "icon";
+  icon?: "sparkles" | "sun" | "moon";
 }
 
 export function LiquidMetalButton({
   label = "Get Started",
   onClick,
   viewMode = "text",
+  icon = "sparkles",
 }: LiquidMetalButtonProps) {
   const [isHovered, setIsHovered] = useState(false);
   const [isPressed, setIsPressed] = useState(false);
@@ -194,17 +196,20 @@ export function LiquidMetalButton({
               pointerEvents: "none",
             }}
           >
-            {viewMode === "icon" && (
-              <Sparkles
-                size={16}
-                style={{
-                  color: "#666666",
-                  filter: "drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.5))",
-                  transition: "all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1)",
-                  transform: "scale(1)",
-                }}
-              />
-            )}
+            {viewMode === "icon" && (() => {
+              const IconComponent = icon === "sun" ? Sun : icon === "moon" ? Moon : Sparkles;
+              return (
+                <IconComponent
+                  size={16}
+                  style={{
+                    color: "#666666",
+                    filter: "drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.5))",
+                    transition: "all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1)",
+                    transform: "scale(1)",
+                  }}
+                />
+              );
+            })()}
             {viewMode === "text" && (
               <span
                 style={{
