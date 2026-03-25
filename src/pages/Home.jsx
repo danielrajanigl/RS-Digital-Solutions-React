@@ -4,23 +4,6 @@ import * as THREE from 'three';
 import Preloader from '../components/Preloader';
 import { LiquidMetalButton } from '../components/ui/liquid-metal-button.tsx';
 
-function animateCounter(element, target, duration = 2000) {
-  let current = 0;
-  const step = target / (duration / 16);
-  let done = false;
-  function update() {
-    if (done) return;
-    current += step;
-    if (current >= target) {
-      element.textContent = target;
-      done = true;
-      return;
-    }
-    element.textContent = Math.floor(current);
-    requestAnimationFrame(update);
-  }
-  update();
-}
 
 export default function Home() {
   const navigate = useNavigate();
@@ -146,18 +129,6 @@ export default function Home() {
     }
   }, []);
 
-  // Counter animation
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      document.querySelectorAll('.hero-stat-value[data-count]').forEach(el => {
-        const target = parseInt(el.getAttribute('data-count'));
-        if (target && (el.textContent === '0' || el.textContent === '')) {
-          animateCounter(el, target, 2000);
-        }
-      });
-    }, 2200);
-    return () => clearTimeout(timer);
-  }, []);
 
   // Hero parallax
   useEffect(() => {
@@ -207,23 +178,6 @@ export default function Home() {
           <div className="hero-buttons-new" style={{ display: 'flex', gap: '16px', justifyContent: 'center', flexWrap: 'wrap' }}>
             <LiquidMetalButton label="Projekt starten" onClick={() => { const el = document.getElementById('kontakt'); if (el) el.scrollIntoView({ behavior: 'smooth' }); }} />
             <LiquidMetalButton label="Leistungen" onClick={() => navigate('/leistungen')} />
-          </div>
-          <div className="hero-divider"></div>
-          <div className="hero-stats-new">
-            <div className="hero-stat">
-              <span className="hero-stat-value" data-count="48">0</span><span className="hero-stat-unit">h</span>
-              <span className="hero-stat-label">bis zur Liveschaltung</span>
-            </div>
-            <div className="hero-stat-separator"></div>
-            <div className="hero-stat">
-              <span className="hero-stat-value" data-count="150">0</span><span className="hero-stat-unit">+</span>
-              <span className="hero-stat-label">zufriedene Kunden</span>
-            </div>
-            <div className="hero-stat-separator"></div>
-            <div className="hero-stat">
-              <span className="hero-stat-value" data-count="100">0</span><span className="hero-stat-unit">%</span>
-              <span className="hero-stat-label">Zufriedenheitsrate</span>
-            </div>
           </div>
         </div>
       </section>
