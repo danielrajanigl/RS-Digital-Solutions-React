@@ -74,7 +74,7 @@ const injectStyles = () => {
     @keyframes glitch{0%,16%,50%,100%{opacity:1}15%,99%{opacity:.9}49%{opacity:.8}}
     @keyframes scanPulse{0%{opacity:.75;transform:scaleY(1)}100%{opacity:1;transform:scaleY(1.03)}}
 
-    .scanner-stream-root{position:relative;width:100%;height:320px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+    .scanner-stream-root{position:relative;width:100%;height:320px;display:flex;align-items:center;justify-content:center;overflow:hidden;-webkit-mask-image:linear-gradient(to right,transparent 0%,rgba(0,0,0,1) 8%,rgba(0,0,0,1) 92%,transparent 100%);mask-image:linear-gradient(to right,transparent 0%,rgba(0,0,0,1) 8%,rgba(0,0,0,1) 92%,transparent 100%)}
     .scanner-stream-root canvas{position:absolute;top:50%;left:0;transform:translateY(-50%);width:100%;pointer-events:none}
     .scanner-stream-root .particle-canvas{height:250px;z-index:0}
     .scanner-stream-root .scanner-canvas{height:300px;z-index:10}
