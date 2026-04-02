@@ -1,10 +1,12 @@
 import { Routes, Route, useLocation } from 'react-router-dom'
 import { useEffect, Component } from 'react'
+import { HelmetProvider } from 'react-helmet-async'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import WhatsAppButton from './components/WhatsAppButton'
 import BackToTop from './components/BackToTop'
 import { useScrollAnimations } from './components/ScrollAnimations'
+import { ui } from './content'
 import Home from './pages/Home'
 import Leistungen from './pages/Leistungen'
 import Referenzen from './pages/Referenzen'
@@ -26,8 +28,8 @@ class ErrorBoundary extends Component {
   render() {
     if (this.state.hasError) {
       return <div style={{ padding: '80px 20px', textAlign: 'center' }}>
-        <h2>Etwas ist schiefgelaufen.</h2>
-        <p>Bitte laden Sie die Seite neu.</p>
+        <h2>{ui.errorBoundary.heading}</h2>
+        <p>{ui.errorBoundary.message}</p>
       </div>;
     }
     return this.props.children;
@@ -57,7 +59,7 @@ function App() {
   useScrollAnimations()
 
   return (
-    <>
+    <HelmetProvider>
       <ScrollToTop />
       <Navbar />
       <ErrorBoundary>
@@ -73,7 +75,7 @@ function App() {
       <Footer />
       <WhatsAppButton />
       <BackToTop />
-    </>
+    </HelmetProvider>
   )
 }
 

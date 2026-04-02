@@ -1,134 +1,15 @@
 import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import * as THREE from 'three';
-import Preloader from '../components/Preloader';
-import { LiquidMetalButton } from '../components/ui/liquid-metal-button.tsx';
+import Beams from '../components/Beams';
+import ShimmerButton from '../components/ui/shimmer-button.tsx';
+import Seo from '../components/Seo';
+import TrustedMarquee from '../components/TrustedMarquee';
+import { homePage, company } from '../content';
 
 
 export default function Home() {
   const navigate = useNavigate();
-  const auroraRef = useRef(null);
   const heroContentRef = useRef(null);
-
-  // Aurora Three.js background
-  useEffect(() => {
-    const mount = auroraRef.current;
-    if (!mount) return;
-
-    let renderer, material, geometry, animationFrameId, auroraObserver;
-
-    try {
-      const scene = new THREE.Scene();
-      const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
-      renderer = new THREE.WebGLRenderer({ alpha: true, antialias: false, powerPreference: 'low-power' });
-
-      renderer.setPixelRatio(1);
-      renderer.setSize(mount.clientWidth, mount.clientHeight);
-      renderer.domElement.style.display = 'block';
-      mount.appendChild(renderer.domElement);
-
-      material = new THREE.ShaderMaterial({
-        uniforms: {
-          iTime: { value: 0 },
-          iResolution: { value: new THREE.Vector2(mount.clientWidth, mount.clientHeight) }
-        },
-        vertexShader: `void main() { gl_Position = vec4(position, 1.0); }`,
-        fragmentShader: `
-          uniform float iTime;
-          uniform vec2 iResolution;
-          #define NUM_OCTAVES 3
-          float rand(vec2 n) { return fract(sin(dot(n, vec2(12.9898, 4.1414))) * 43758.5453); }
-          float noise(vec2 p) {
-            vec2 ip = floor(p); vec2 u = fract(p);
-            u = u * u * (3.0 - 2.0 * u);
-            float res = mix(mix(rand(ip), rand(ip + vec2(1.0, 0.0)), u.x),
-              mix(rand(ip + vec2(0.0, 1.0)), rand(ip + vec2(1.0, 1.0)), u.x), u.y);
-            return res * res;
-          }
-          float fbm(vec2 x) {
-            float v = 0.0; float a = 0.3; vec2 shift = vec2(100);
-            mat2 rot = mat2(cos(0.5), sin(0.5), -sin(0.5), cos(0.5));
-            for (int i = 0; i < NUM_OCTAVES; ++i) { v += a * noise(x); x = rot * x * 2.0 + shift; a *= 0.4; }
-            return v;
-          }
-          void main() {
-            vec2 p = ((gl_FragCoord.xy) - iResolution.xy * 0.5) / iResolution.y * mat2(6., -4., 4., 6.);
-            vec4 o = vec4(0.);
-            float f = 2. + fbm(p + vec2(iTime * 5., 0.)) * .5;
-            for (float i = 0.; i++ < 35.;) {
-              vec2 v = p + cos(i * i + (iTime + p.x * .08) * .025 + i * vec2(13., 11.)) * 3.5;
-              float tailNoise = fbm(v + vec2(iTime * .5, i)) * .3 * (1. - (i / 35.));
-              vec4 auroraColors = vec4(
-                .1 + .3 * sin(i * .2 + iTime * .4),
-                .3 + .5 * cos(i * .3 + iTime * .5),
-                .7 + .3 * sin(i * .4 + iTime * .3),
-                1.
-              );
-              vec4 cc = auroraColors * exp(sin(i * i + iTime * .8)) / length(max(v, vec2(v.x * f * .015, v.y * 1.5)));
-              float thin = smoothstep(0., 1., i / 35.) * .6;
-              o += cc * (1. + tailNoise * .8) * thin;
-            }
-            o = tanh(pow(o / 100., vec4(1.6)));
-            gl_FragColor = o * 1.5;
-          }
-        `
-      });
-
-      geometry = new THREE.PlaneGeometry(2, 2);
-      const mesh = new THREE.Mesh(geometry, material);
-      scene.add(mesh);
-
-      let auroraVisible = true;
-
-      const animate = () => {
-        animationFrameId = requestAnimationFrame(animate);
-        if (!auroraVisible) return;
-        material.uniforms.iTime.value += 0.016;
-        renderer.render(scene, camera);
-      };
-
-      const heroSection = mount.closest('.hero-section');
-      if (heroSection) {
-        auroraObserver = new IntersectionObserver((entries) => {
-          auroraVisible = entries[0].isIntersecting;
-        }, { threshold: 0 });
-        auroraObserver.observe(heroSection);
-      }
-
-      let resizeTimeout;
-      const handleResize = () => {
-        clearTimeout(resizeTimeout);
-        resizeTimeout = setTimeout(() => {
-          const w = mount.clientWidth;
-          const h = mount.clientHeight;
-          renderer.setSize(w, h);
-          material.uniforms.iResolution.value.set(w, h);
-        }, 200);
-      };
-      window.addEventListener('resize', handleResize);
-      animate();
-
-      return () => {
-        cancelAnimationFrame(animationFrameId);
-        window.removeEventListener('resize', handleResize);
-        if (auroraObserver) auroraObserver.disconnect();
-        if (mount.contains(renderer.domElement)) mount.removeChild(renderer.domElement);
-        renderer.dispose();
-        material.dispose();
-        geometry.dispose();
-      };
-    } catch (e) {
-      console.warn('WebGL aurora failed:', e);
-      return () => {
-        if (animationFrameId) cancelAnimationFrame(animationFrameId);
-        if (auroraObserver) auroraObserver.disconnect();
-        if (renderer) renderer.dispose();
-        if (material) material.dispose();
-        if (geometry) geometry.dispose();
-      };
-    }
-  }, []);
-
 
   // Hero parallax
   useEffect(() => {
@@ -159,39 +40,53 @@ export default function Home() {
 
   return (
     <>
+      <Seo page="home" />
       {/* Hero Section */}
       <section id="hero" className="hero-section" style={{ opacity: 1, visibility: 'visible', position: 'relative', minHeight: '100vh' }}>
-        <div ref={auroraRef} className="aurora-canvas"></div>
+        <div className="beams-canvas">
+          <Beams
+            beamWidth={2.5}
+            beamHeight={18}
+            beamNumber={15}
+            lightColor="#ffffff"
+            speed={2.5}
+            noiseIntensity={2}
+            scale={0.15}
+            rotation={43}
+          />
+        </div>
         <div className="hero-overlay"></div>
         <div className="hero-content" ref={heroContentRef} style={{ opacity: 1, visibility: 'visible', position: 'relative', zIndex: 2 }}>
           <div className="hero-float-wrapper" style={{ opacity: 1, visibility: 'visible', transform: 'none' }}>
             <h1 className="hero-title-new">
-              Wir erschaffen
-              <span className="hero-gradient-text">digitale Meisterwerke</span>
-              für Ihr Unternehmen.
+              {homePage.hero.titleLine1}
+              <span className="hero-gradient-text">{homePage.hero.titleGradient}</span>
+              {homePage.hero.titleLine3}
             </h1>
             <p className="hero-subtitle-new">
-              Hochprofessionelle Websites, Online-Shops &amp; intelligente KI-Lösungen –
-              maßgeschneidert und <strong>in nur 48 Stunden live.</strong>
+              {homePage.hero.subtitle}
             </p>
           </div>
           <div className="hero-buttons-new" style={{ display: 'flex', gap: '16px', justifyContent: 'center', flexWrap: 'wrap' }}>
-            <LiquidMetalButton label="Projekt starten" onClick={() => { const el = document.getElementById('kontakt'); if (el) el.scrollIntoView({ behavior: 'smooth' }); }} />
-            <LiquidMetalButton label="Leistungen" onClick={() => navigate('/leistungen')} />
+            <ShimmerButton label={homePage.hero.primaryButton} onClick={() => { const el = document.getElementById('kontakt'); if (el) el.scrollIntoView({ behavior: 'smooth' }); }} />
+            <ShimmerButton label={homePage.hero.secondaryButton} onClick={() => navigate('/leistungen')} />
           </div>
         </div>
       </section>
+
+      {/* Trusted By Marquee */}
+      <TrustedMarquee />
 
       {/* CTA Section */}
       <section className="cta-section">
         <div className="cta-bg-effect"></div>
         <div className="container">
           <div className="cta-content" style={{ opacity: 1, visibility: 'visible', transform: 'none' }}>
-            <h2>Bereit, Ihre digitale Präsenz<br/><span className="highlight">auf das nächste Level</span> zu bringen?</h2>
-            <p>Lassen Sie uns in einem unverbindlichen Gespräch herausfinden, wie wir Ihr Unternehmen online nach vorne bringen können.</p>
+            <h2>{homePage.cta.heading}</h2>
+            <p>{homePage.cta.subtitle}</p>
             <div className="cta-buttons">
-              <LiquidMetalButton label="Beratungsgespräch" onClick={() => { const el = document.getElementById('kontakt'); if (el) el.scrollIntoView({ behavior: 'smooth' }); }} />
-              <LiquidMetalButton label="Jetzt anrufen" onClick={() => { window.location.href = 'tel:+4917612345678'; }} />
+              <ShimmerButton label={homePage.cta.primaryButton} onClick={() => { const el = document.getElementById('kontakt'); if (el) el.scrollIntoView({ behavior: 'smooth' }); }} />
+              <ShimmerButton label={homePage.cta.secondaryButton} onClick={() => { window.location.href = company.phoneTel; }} />
             </div>
           </div>
         </div>
@@ -202,77 +97,72 @@ export default function Home() {
         <div className="container">
           <div className="kontakt-grid">
             <div className="kontakt-info" style={{ opacity: 1, visibility: 'visible', transform: 'none' }}>
-              <span className="section-tag">Kontakt</span>
-              <h2 className="section-title">Lassen Sie uns <span className="highlight">sprechen</span></h2>
+              <span className="section-tag">{homePage.contact.tag}</span>
+              <h2 className="section-title">{homePage.contact.title}</h2>
               <p className="kontakt-text">
-                Haben Sie ein Projekt im Kopf? Erzählen Sie uns davon.
-                Wir freuen uns auf Ihre Nachricht und melden uns innerhalb von 24 Stunden bei Ihnen.
+                {homePage.contact.intro}
               </p>
               <div className="kontakt-details">
                 <div className="kontakt-item">
                   <div className="kontakt-icon"><i className="fas fa-envelope"></i></div>
                   <div>
-                    <span className="kontakt-label">E-Mail</span>
-                    <a href="mailto:info@rs-digital-solutions.de">info@rs-digital-solutions.de</a>
+                    <span className="kontakt-label">{homePage.contact.labels.email}</span>
+                    <a href={`mailto:${company.email}`}>{company.email}</a>
                   </div>
                 </div>
                 <div className="kontakt-item">
                   <div className="kontakt-icon"><i className="fas fa-phone"></i></div>
                   <div>
-                    <span className="kontakt-label">Telefon</span>
-                    <a href="tel:+4917612345678">+49 176 1234 5678</a>
+                    <span className="kontakt-label">{homePage.contact.labels.phone}</span>
+                    <a href={company.phoneTel}>{company.phone}</a>
                   </div>
                 </div>
                 <div className="kontakt-item">
                   <div className="kontakt-icon"><i className="fas fa-map-marker-alt"></i></div>
                   <div>
-                    <span className="kontakt-label">Standort</span>
-                    <span>Deutschland</span>
+                    <span className="kontakt-label">{homePage.contact.labels.location}</span>
+                    <span>{company.location}</span>
                   </div>
                 </div>
               </div>
               <div className="kontakt-social">
-                <a href="#" className="social-link"><i className="fab fa-instagram"></i></a>
-                <a href="#" className="social-link"><i className="fab fa-linkedin-in"></i></a>
-                <a href="#" className="social-link"><i className="fab fa-facebook-f"></i></a>
+                <a href={company.social.instagram} className="social-link"><i className="fab fa-instagram"></i></a>
+                <a href={company.social.linkedin} className="social-link"><i className="fab fa-linkedin-in"></i></a>
+                <a href={company.social.facebook} className="social-link"><i className="fab fa-facebook-f"></i></a>
               </div>
             </div>
             <div className="kontakt-form-wrapper" style={{ opacity: 1, visibility: 'visible', transform: 'none' }}>
               <form className="kontakt-form" id="contactForm" onSubmit={handleSubmit}>
                 <div className="form-row">
                   <div className="form-group">
-                    <label htmlFor="name">Name *</label>
-                    <input type="text" id="name" name="name" required placeholder="Ihr vollständiger Name" />
+                    <label htmlFor="name">{homePage.contact.form.name.label}</label>
+                    <input type="text" id="name" name="name" required placeholder={homePage.contact.form.name.placeholder} />
                   </div>
                   <div className="form-group">
-                    <label htmlFor="email">E-Mail *</label>
-                    <input type="email" id="email" name="email" required placeholder="ihre@email.de" />
+                    <label htmlFor="email">{homePage.contact.form.email.label}</label>
+                    <input type="email" id="email" name="email" required placeholder={homePage.contact.form.email.placeholder} />
                   </div>
                 </div>
                 <div className="form-group">
-                  <label htmlFor="phone">Telefon</label>
-                  <input type="tel" id="phone" name="phone" placeholder="+49 ..." />
+                  <label htmlFor="phone">{homePage.contact.form.phone.label}</label>
+                  <input type="tel" id="phone" name="phone" placeholder={homePage.contact.form.phone.placeholder} />
                 </div>
                 <div className="form-group">
-                  <label htmlFor="service">Gewünschte Leistung</label>
+                  <label htmlFor="service">{homePage.contact.form.service.label}</label>
                   <select id="service" name="service">
-                    <option value="">Bitte wählen...</option>
-                    <option value="webdesign">Professionelles Webdesign</option>
-                    <option value="shop">E-Commerce / Online-Shop</option>
-                    <option value="48h">48h Website-Relaunch</option>
-                    <option value="ki">KI-Chatbot Integration</option>
-                    <option value="seo">SEO &amp; Online-Marketing</option>
-                    <option value="booking">Terminbuchungssoftware</option>
-                    <option value="other">Sonstiges</option>
+                    <option value="">{homePage.contact.form.service.placeholder}</option>
+                    {homePage.contact.form.service.options.map((opt) => (
+                      <option key={opt} value={opt}>{opt}</option>
+                    ))}
                   </select>
                 </div>
                 <div className="form-group">
-                  <label htmlFor="message">Ihre Nachricht *</label>
-                  <textarea id="message" name="message" rows="5" required placeholder="Erzählen Sie uns von Ihrem Projekt..."></textarea>
+                  <label htmlFor="message">{homePage.contact.form.message.label}</label>
+                  <textarea id="message" name="message" rows="5" required placeholder={homePage.contact.form.message.placeholder}></textarea>
                 </div>
                 <div style={{ display: 'flex', justifyContent: 'center' }}>
-                  <LiquidMetalButton
-                    label={formState === 'idle' ? 'Senden' : formState === 'sending' ? 'Sendet...' : 'Gesendet!'}
+                  <ShimmerButton
+                    label={formState === 'idle' ? homePage.contact.form.submit.default : formState === 'sending' ? homePage.contact.form.submit.loading : homePage.contact.form.submit.success}
                     onClick={() => {
                       if (formState === 'idle') {
                         document.getElementById('contactForm').requestSubmit();

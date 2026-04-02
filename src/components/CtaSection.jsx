@@ -1,22 +1,21 @@
 import { useNavigate } from 'react-router-dom';
-import { LiquidMetalButton } from './ui/liquid-metal-button.tsx';
+import ShimmerButton from './ui/shimmer-button.tsx';
+import { ctaDefaults, company } from '../content';
 
 export default function CtaSection({ title, subtitle, showPhone = false }) {
   const navigate = useNavigate();
-  const defaultTitle = 'Bereit, Ihre digitale Präsenz<br><span class="highlight">auf das nächste Level</span> zu bringen?';
-  const defaultSubtitle = 'Lassen Sie uns in einem unverbindlichen Gespräch herausfinden, wie wir Ihr Unternehmen online nach vorne bringen können.';
 
   return (
     <section className="cta-section">
       <div className="cta-bg-effect"></div>
       <div className="container">
         <div className="cta-content" data-animate="fade-up">
-          <h2 dangerouslySetInnerHTML={{ __html: title || defaultTitle }}></h2>
-          <p>{subtitle || defaultSubtitle}</p>
+          <h2 dangerouslySetInnerHTML={{ __html: title || ctaDefaults.title }}></h2>
+          <p>{subtitle || ctaDefaults.subtitle}</p>
           <div className="cta-buttons">
-            <LiquidMetalButton label="Beratungsgespräch" onClick={() => navigate('/#kontakt')} />
+            <ShimmerButton label={ctaDefaults.primaryButton} onClick={() => navigate('/#kontakt')} />
             {showPhone && (
-              <LiquidMetalButton label="Jetzt anrufen" onClick={() => { window.location.href = 'tel:+4917612345678'; }} />
+              <ShimmerButton label={ctaDefaults.secondaryButton} onClick={() => { window.location.href = company.phoneTel; }} />
             )}
           </div>
         </div>

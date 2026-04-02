@@ -1,25 +1,19 @@
 import { useNavigate } from 'react-router-dom';
 import PageHero from '../components/PageHero';
 import CtaSection from '../components/CtaSection';
-import { LiquidMetalButton } from '../components/ui/liquid-metal-button.tsx';
-
-const benefits = [
-  'Automatische Kundenberatung in Echtzeit',
-  'Intelligente Terminvereinbarung',
-  'Personalisierte Produktempfehlungen',
-  'Mehrsprachiger Support',
-  'Nahtlose CRM-Integration',
-  'Lernfähig & kontinuierlich besser',
-];
+import ShimmerButton from '../components/ui/shimmer-button.tsx';
+import Seo from '../components/Seo';
+import { kiPage } from '../content';
 
 export default function KI() {
   const navigate = useNavigate();
   return (
     <>
+      <Seo page="ki" />
       <PageHero
-        tag="Intelligente Websites"
-        title='Ihre Website <span class="highlight">spricht</span> mit Ihren Kunden'
-        subtitle="KI-Chatbots, die beraten, verkaufen und Termine buchen – vollautomatisch und rund um die Uhr."
+        tag={kiPage.hero.tag}
+        title={kiPage.hero.title}
+        subtitle={kiPage.hero.subtitle}
       />
 
       {/* KI Section */}
@@ -34,23 +28,16 @@ export default function KI() {
                       <i className="fas fa-robot"></i>
                     </div>
                     <div className="chat-info">
-                      <span className="chat-name">KI-Assistent</span>
-                      <span className="chat-status"><span className="status-dot"></span> Online</span>
+                      <span className="chat-name">{kiPage.chat.name}</span>
+                      <span className="chat-status"><span className="status-dot"></span> {kiPage.chat.status}</span>
                     </div>
                   </div>
                   <div className="chat-messages">
-                    <div className="chat-message bot">
-                      <p>Hallo! 👋 Willkommen bei RS Digital Solutions. Wie kann ich Ihnen helfen?</p>
-                    </div>
-                    <div className="chat-message user">
-                      <p>Ich brauche eine neue Website für mein Restaurant.</p>
-                    </div>
-                    <div className="chat-message bot">
-                      <p>Perfekt! Für Restaurants empfehle ich unser 48h-Paket mit integrierter Speisekarte, Online-Reservierung und Google Maps Integration. Soll ich einen Beratungstermin vereinbaren? 📅</p>
-                    </div>
-                    <div className="chat-message user">
-                      <p>Ja bitte, am liebsten morgen Vormittag.</p>
-                    </div>
+                    {kiPage.chat.messages.map((msg, i) => (
+                      <div key={i} className={`chat-message ${msg.role}`}>
+                        <p>{msg.text}</p>
+                      </div>
+                    ))}
                     <div className="chat-message bot typing">
                       <div className="typing-indicator">
                         <span></span><span></span><span></span>
@@ -61,24 +48,18 @@ export default function KI() {
               </div>
             </div>
             <div className="ki-content" data-animate="fade-left">
-              <span className="section-tag">KI-Chatbots</span>
-              <h2 className="section-title">
-                Automatische Beratung <span className="highlight">rund um die Uhr</span>
-              </h2>
-              <p className="ki-description">
-                Stellen Sie sich vor, Ihre Website berät Kunden, beantwortet Fragen,
-                bucht Termine und generiert Leads – vollautomatisch und rund um die Uhr.
-                Mit unseren KI-Chatbots wird das Realität.
-              </p>
+              <span className="section-tag">{kiPage.section.tag}</span>
+              <h2 className="section-title" dangerouslySetInnerHTML={{ __html: kiPage.section.title }}></h2>
+              <p className="ki-description">{kiPage.section.description}</p>
               <div className="ki-benefits">
-                {benefits.map((b, i) => (
+                {kiPage.benefits.map((b, i) => (
                   <div key={i} className="ki-benefit">
                     <i className="fas fa-check-circle"></i>
                     <span>{b}</span>
                   </div>
                 ))}
               </div>
-              <LiquidMetalButton label="KI-Demo anfordern" onClick={() => navigate('/#kontakt')} />
+              <ShimmerButton label={kiPage.section.button} onClick={() => navigate('/#kontakt')} />
             </div>
           </div>
         </div>

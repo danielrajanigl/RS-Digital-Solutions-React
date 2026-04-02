@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import Logo from './Logo';
 import ThemeToggle from './ThemeToggle';
+import { navigation, company } from '../content';
 
 
 export default function Navbar() {
@@ -111,16 +112,20 @@ export default function Navbar() {
         <div className="nav-container">
           <Link to="/" className="nav-logo">
             <Logo />
-            <span className="logo-text">Digital Solutions</span>
+            <span className="logo-text">{company.nameSuffix}</span>
           </Link>
           <ul className="nav-menu">
-            <li><NavLink to="/" className={({ isActive }) => `nav-link${isActive ? ' active' : ''}`} end>Home</NavLink></li>
-            <li><NavLink to="/leistungen" className={({ isActive }) => `nav-link${isActive ? ' active' : ''}`}>Leistungen</NavLink></li>
-            <li><NavLink to="/referenzen" className={({ isActive }) => `nav-link${isActive ? ' active' : ''}`}>Referenzen</NavLink></li>
-            <li><NavLink to="/about" className={({ isActive }) => `nav-link${isActive ? ' active' : ''}`}>Über uns</NavLink></li>
-            <li><a href="#kontakt" className="nav-link" onClick={scrollToKontakt}>Kontakt</a></li>
+            {navigation.map((item) => (
+              <li key={item.path}>
+                {item.isAnchor ? (
+                  <a href={item.path} className="nav-link" onClick={scrollToKontakt}>{item.label}</a>
+                ) : (
+                  <NavLink to={item.path} className={({ isActive }) => `nav-link${isActive ? ' active' : ''}`} end={item.path === '/'}>{item.label}</NavLink>
+                )}
+              </li>
+            ))}
           </ul>
-          <div style={{ marginLeft: '32px' }}><ThemeToggle /></div>
+          <ThemeToggle />
           <div className={`hamburger${mobileOpen ? ' active' : ''}`} onClick={toggleMobile}>
             <span></span>
             <span></span>
@@ -132,12 +137,19 @@ export default function Navbar() {
       <div className={`mobile-menu-overlay${mobileOpen ? ' active' : ''}`}>
         <div className="mobile-menu-content">
           <ul className="mobile-nav-links">
-            <li><Link to="/" className="mobile-link" onClick={closeMobile}>Home</Link></li>
-            <li><Link to="/leistungen" className="mobile-link" onClick={closeMobile}>Leistungen</Link></li>
-            <li><Link to="/referenzen" className="mobile-link" onClick={closeMobile}>Referenzen</Link></li>
-            <li><Link to="/about" className="mobile-link" onClick={closeMobile}>Über uns</Link></li>
-            <li><a href="#kontakt" className="mobile-link" onClick={scrollToKontakt}>Kontakt</a></li>
+            {navigation.map((item) => (
+              <li key={item.path}>
+                {item.isAnchor ? (
+                  <a href={item.path} className="mobile-link" onClick={scrollToKontakt}>{item.label}</a>
+                ) : (
+                  <Link to={item.path} className="mobile-link" onClick={closeMobile}>{item.label}</Link>
+                )}
+              </li>
+            ))}
           </ul>
+          <div className="mobile-theme-toggle">
+            <ThemeToggle />
+          </div>
         </div>
       </div>
     </>
