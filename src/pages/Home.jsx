@@ -11,13 +11,20 @@ export default function Home() {
   const navigate = useNavigate();
   const heroContentRef = useRef(null);
 
-  // Hero parallax
+  // Hero parallax (rAF optimized)
   useEffect(() => {
+    let ticking = false;
     const onScroll = () => {
-      const heroContent = heroContentRef.current;
-      if (heroContent && window.scrollY < window.innerHeight) {
-        heroContent.style.transform = `translateY(${window.scrollY * 0.3}px)`;
-        heroContent.style.opacity = 1 - (window.scrollY / (window.innerHeight * 0.8));
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(() => {
+          const heroContent = heroContentRef.current;
+          if (heroContent && window.scrollY < window.innerHeight) {
+            heroContent.style.transform = `translateY(${window.scrollY * 0.3}px)`;
+            heroContent.style.opacity = 1 - (window.scrollY / (window.innerHeight * 0.8));
+          }
+          ticking = false;
+        });
       }
     };
     window.addEventListener('scroll', onScroll, { passive: true });
@@ -117,17 +124,21 @@ export default function Home() {
               <form className="kontakt-form" id="contactForm" onSubmit={handleSubmit}>
                 <div className="form-row">
                   <div className="form-group">
-                    <input type="text" id="name" name="name" required placeholder={homePage.contact.form.name.placeholder} aria-label={homePage.contact.form.name.label} />
+                    <label htmlFor="name" className="sr-only">{homePage.contact.form.name.label}</label>
+                    <input type="text" id="name" name="name" required placeholder={homePage.contact.form.name.placeholder} />
                   </div>
                   <div className="form-group">
-                    <input type="email" id="email" name="email" required placeholder={homePage.contact.form.email.placeholder} aria-label={homePage.contact.form.email.label} />
+                    <label htmlFor="email" className="sr-only">{homePage.contact.form.email.label}</label>
+                    <input type="email" id="email" name="email" required placeholder={homePage.contact.form.email.placeholder} />
                   </div>
                 </div>
                 <div className="form-group">
-                  <input type="tel" id="phone" name="phone" placeholder={homePage.contact.form.phone.placeholder} aria-label={homePage.contact.form.phone.label} />
+                  <label htmlFor="phone" className="sr-only">{homePage.contact.form.phone.label}</label>
+                  <input type="tel" id="phone" name="phone" placeholder={homePage.contact.form.phone.placeholder} />
                 </div>
                 <div className="form-group">
-                  <select id="service" name="service" aria-label={homePage.contact.form.service.label}>
+                  <label htmlFor="service" className="sr-only">{homePage.contact.form.service.label}</label>
+                  <select id="service" name="service">
                     <option value="">{homePage.contact.form.service.placeholder}</option>
                     {homePage.contact.form.service.options.map((opt) => (
                       <option key={opt} value={opt}>{opt}</option>
@@ -135,7 +146,8 @@ export default function Home() {
                   </select>
                 </div>
                 <div className="form-group">
-                  <textarea id="message" name="message" rows="5" required placeholder={homePage.contact.form.message.placeholder} aria-label={homePage.contact.form.message.label}></textarea>
+                  <label htmlFor="message" className="sr-only">{homePage.contact.form.message.label}</label>
+                  <textarea id="message" name="message" rows="5" required placeholder={homePage.contact.form.message.placeholder}></textarea>
                 </div>
                 <div className="form-submit-wrapper">
                   <ShimmerButton

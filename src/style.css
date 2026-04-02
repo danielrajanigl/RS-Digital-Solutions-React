@@ -28,7 +28,6 @@
     --border-light: rgba(255, 255, 255, 0.12);
     
     --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    --font-display: 'Playfair Display', Georgia, serif;
     
     --radius-sm: 8px;
     --radius-md: 12px;
@@ -94,6 +93,19 @@ img {
 
 ul {
     list-style: none;
+}
+
+/* Screen reader only */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
 }
 
 .container {
@@ -1254,6 +1266,8 @@ html.light-theme section + section::before {
 .usp-feature:hover {
     background: var(--bg-card-hover);
     border-color: rgba(95, 131, 179, 0.25);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
 }
 
 .feature-icon {
@@ -1804,6 +1818,7 @@ html.light-theme section + section::before {
 .referenz-card:hover {
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
     border-color: rgba(95, 131, 179, 0.25);
+    transform: translateY(-2px);
 }
 
 .referenz-image {
@@ -1893,6 +1908,8 @@ html.light-theme section + section::before {
 .testimonial-card:hover {
     border-color: rgba(95, 131, 179, 0.3);
     background: rgba(255, 255, 255, 0.03);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
 }
 
 .testimonial-stars {
@@ -2647,54 +2664,7 @@ html.light-theme section + section::before {
     color: var(--primary-light);
 }
 
-.footer-newsletter h4 {
-    font-size: 0.95rem;
-    font-weight: 700;
-    margin-bottom: 12px;
-}
 
-.footer-newsletter p {
-    font-size: 0.9rem;
-    color: var(--text-secondary);
-    margin-bottom: 16px;
-    line-height: 1.6;
-}
-
-.newsletter-form {
-    display: flex;
-    gap: 8px;
-}
-
-.newsletter-form input {
-    flex: 1;
-    padding: 12px 16px;
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid var(--border-color);
-    border-radius: var(--radius-sm);
-    color: var(--text-primary);
-    font-family: var(--font-primary);
-    font-size: 0.9rem;
-    outline: none;
-    transition: var(--transition-base);
-}
-
-.newsletter-form input:focus {
-    border-color: var(--primary);
-}
-
-.newsletter-form button {
-    padding: 12px 16px;
-    background: var(--primary);
-    border: none;
-    border-radius: var(--radius-sm);
-    color: white;
-    cursor: pointer;
-    transition: var(--transition-base);
-}
-
-.newsletter-form button:hover {
-    background: var(--primary-dark);
-}
 
 .footer-bottom {
     display: flex;
@@ -3896,23 +3866,7 @@ html.light-theme .whatsapp-float:hover {
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
-html.light-theme .footer-newsletter h4 {
-    color: #1a1a2e;
-}
 
-html.light-theme .footer-newsletter p {
-    color: rgba(26, 26, 46, 0.6);
-}
-
-html.light-theme .newsletter-form input {
-    background: #ffffff;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    color: #1a1a2e;
-}
-
-html.light-theme .newsletter-form input:focus {
-    border-color: #2d5a8e;
-}
 
 html.light-theme .footer-bottom p {
     color: rgba(26, 26, 46, 0.4);
@@ -4001,8 +3955,7 @@ html.light-theme .card-stack-btn,
 html.light-theme .social-link,
 html.light-theme .form-group input,
 html.light-theme .form-group select,
-html.light-theme .form-group textarea,
-html.light-theme .newsletter-form input {
+html.light-theme .form-group textarea {
     transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
 }
 
