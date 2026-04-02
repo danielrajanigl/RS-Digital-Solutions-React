@@ -414,26 +414,7 @@ export const trustedBy = {
 export const footer = {
   description:
     'Hochprofessionelle Websites, Online-Shops & intelligente KI-Lösungen – maßgeschneidert und in nur 48 Stunden live.',
-  columns: [
-    {
-      heading: 'Leistungen',
-      links: [
-        { label: 'Professionelles Webdesign', href: '/leistungen' },
-        { label: 'E-Commerce & Shops', href: '/leistungen' },
-        { label: 'KI-Chatbot Integration', href: '/ki' },
-        { label: '48h Website-Relaunch', href: '/48h' },
-        { label: 'SEO & Online-Marketing', href: '/leistungen' },
-      ],
-    },
-    {
-      heading: 'Unternehmen',
-      links: [
-        { label: 'Über uns', href: '/about' },
-        { label: 'Referenzen', href: '/referenzen' },
-        { label: 'Kontakt', href: '#kontakt' },
-      ],
-    },
-  ],
+  columns: [],
   contactHeading: 'Kontakt',
   legalLinks: [
     { label: 'Datenschutz', href: '/datenschutz' },

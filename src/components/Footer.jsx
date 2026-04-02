@@ -6,8 +6,8 @@ export default function Footer() {
   return (
     <footer className="footer">
       <div className="container">
-        <div className="footer-grid">
-          {/* Brand column */}
+        <div className="footer-main">
+          {/* Left: Brand */}
           <div className="footer-brand">
             <Link to="/" className="footer-logo">
               <Logo width={36} height={35} className="logo-svg footer-logo-svg" />
@@ -21,35 +21,20 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Dynamic link columns */}
-          {footer.columns.map((col) => (
-            <div key={col.heading} className="footer-links">
-              <h4>{col.heading}</h4>
-              <ul>
-                {col.links.map((link) => (
-                  <li key={link.label}>
-                    {link.href.startsWith('#') ? (
-                      <a href={link.href}>{link.label}</a>
-                    ) : (
-                      <Link to={link.href}>{link.label}</Link>
-                    )}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-
-          {/* Contact column */}
-          <div className="footer-links footer-contact-col">
+          {/* Right: Contact */}
+          <div className="footer-contact">
             <h4>{footer.contactHeading}</h4>
             <ul>
               <li>
+                <i className="fas fa-envelope"></i>
                 <a href={`mailto:${company.email}`}>{company.email}</a>
               </li>
               <li>
+                <i className="fas fa-phone"></i>
                 <a href={company.phoneTel}>{company.phone}</a>
               </li>
               <li>
+                <i className="fas fa-map-marker-alt"></i>
                 <span>{company.location}</span>
               </li>
             </ul>
