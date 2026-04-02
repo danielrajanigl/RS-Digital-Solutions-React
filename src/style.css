@@ -517,7 +517,7 @@ html.light-theme section + section::before {
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    padding: 120px 24px 80px;
+    padding: 140px 24px 80px;
 }
 
 .aurora-canvas {
@@ -577,11 +577,11 @@ html.light-theme section + section::before {
 /* New Title Styling – Bold, tracking-tight, cinematic */
 .hero-title-new {
     font-family: var(--font-primary);
-    font-size: clamp(2.8rem, 7vw, 5rem);
+    font-size: clamp(3rem, 8vw, 5.5rem);
     font-weight: 700;
-    line-height: 1.1;
+    line-height: 1.05;
     margin-bottom: 28px;
-    letter-spacing: -2px;
+    letter-spacing: -2.5px;
     color: var(--text-primary);
 }
 
@@ -609,13 +609,13 @@ html.light-theme section + section::before {
 /* Subtitle – Lighter, more spacious */
 .hero-subtitle-new {
     font-family: var(--font-primary);
-    font-size: clamp(1.08rem, 2vw, 1.3rem);
+    font-size: clamp(0.95rem, 1.8vw, 1.15rem);
     font-weight: 300;
-    color: rgba(255, 255, 255, 0.9);
-    max-width: 620px;
+    color: var(--text-secondary);
+    max-width: 560px;
     margin: 0 auto;
     line-height: 1.8;
-    letter-spacing: 0.1px;
+    letter-spacing: 0.2px;
 }
 
 .hero-subtitle-new strong {
@@ -626,10 +626,48 @@ html.light-theme section + section::before {
 /* Glass Buttons – Starfall Style */
 .hero-buttons-new {
     display: flex;
-    gap: 16px;
+    gap: 24px;
     justify-content: center;
+    align-items: center;
     flex-wrap: wrap;
     margin-bottom: 40px;
+}
+
+/* Hero text link (secondary action) */
+.hero-text-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    font-family: var(--font-primary);
+    font-size: 0.95rem;
+    font-weight: 400;
+    cursor: pointer;
+    transition: color 0.25s ease, gap 0.25s ease;
+    padding: 0;
+    letter-spacing: 0.2px;
+}
+
+.hero-text-link:hover {
+    color: var(--text-primary);
+    gap: 10px;
+}
+
+.hero-text-link span {
+    transition: transform 0.25s ease;
+}
+
+.hero-text-link:hover span {
+    transform: translateX(3px);
+}
+
+/* Form submit wrapper */
+.form-submit-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 8px;
 }
 
 .hero-btn-primary {
@@ -1190,7 +1228,7 @@ html.light-theme section + section::before {
 
 /* --- USP Section --- */
 .usp-section {
-    padding: 120px 0;
+    padding: 140px 0;
     background: var(--bg-dark);
     position: relative;
 }
@@ -1381,7 +1419,7 @@ html.light-theme section + section::before {
 
 /* --- Services Section (Image Accordion) --- */
 .services-section {
-    padding: 120px 0;
+    padding: 140px 0;
     background: var(--bg-section);
 }
 
@@ -1521,7 +1559,7 @@ html.light-theme section + section::before {
 
 /* --- KI Section --- */
 .ki-section {
-    padding: 120px 0;
+    padding: 140px 0;
     background: var(--bg-dark);
     overflow: hidden;
 }
@@ -1693,7 +1731,7 @@ html.light-theme section + section::before {
 
 /* --- Process Section --- */
 .process-section {
-    padding: 120px 0;
+    padding: 140px 0;
     background: var(--bg-section);
 }
 
@@ -1755,7 +1793,7 @@ html.light-theme section + section::before {
 
 /* --- Referenzen Section --- */
 .referenzen-section {
-    padding: 120px 0;
+    padding: 140px 0;
     background: var(--bg-dark);
 }
 
@@ -1848,7 +1886,7 @@ html.light-theme section + section::before {
 
 /* --- Testimonials Section --- */
 .testimonials-section {
-    padding: 120px 0;
+    padding: 140px 0;
     background: var(--bg-section);
 }
 
@@ -1867,8 +1905,8 @@ html.light-theme section + section::before {
 }
 
 .testimonial-card:hover {
-    border-color: rgba(95, 131, 179, 0.25);
-    transform: translateY(-4px);
+    border-color: rgba(95, 131, 179, 0.3);
+    background: rgba(255, 255, 255, 0.03);
 }
 
 .testimonial-stars {
@@ -1922,7 +1960,7 @@ html.light-theme section + section::before {
 
 /* --- About Section --- */
 .about-section {
-    padding: 120px 0;
+    padding: 140px 0;
     background: var(--bg-dark);
 }
 
@@ -2042,7 +2080,7 @@ html.light-theme section + section::before {
 
 /* --- FAQ Section --- */
 .faq-section {
-    padding: 120px 0;
+    padding: 140px 0;
     background: var(--bg-section);
 }
 
@@ -2105,7 +2143,7 @@ html.light-theme section + section::before {
 
 /* --- Animated Card Stack --- */
 .card-stack-section {
-    padding: 120px 0;
+    padding: 140px 0;
     background: var(--bg-section);
     position: relative;
 }
@@ -2301,7 +2339,7 @@ html.light-theme section + section::before {
 
 /* --- CTA Section --- */
 .cta-section {
-    padding: 120px 0;
+    padding: 140px 0;
     background: var(--bg-dark);
     position: relative;
     overflow: hidden;
@@ -2352,7 +2390,7 @@ html.light-theme section + section::before {
 
 /* --- Kontakt Section --- */
 .kontakt-section {
-    padding: 120px 0;
+    padding: 140px 0;
     background: var(--bg-section);
 }
 
@@ -2680,7 +2718,7 @@ html.light-theme section + section::before {
 }
 
 .footer-bottom p {
-    font-size: 0.85rem;
+    font-size: 0.78rem;
     color: var(--text-muted);
 }
 
@@ -2690,7 +2728,7 @@ html.light-theme section + section::before {
 }
 
 .footer-bottom-links a {
-    font-size: 0.85rem;
+    font-size: 0.78rem;
     color: var(--text-muted);
 }
 
@@ -2720,9 +2758,9 @@ html.light-theme section + section::before {
 }
 
 .whatsapp-float:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.3);
-    background: rgba(255, 255, 255, 0.14);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+    background: rgba(255, 255, 255, 0.12);
     color: #ffffff;
 }
 
@@ -2775,7 +2813,7 @@ html.light-theme section + section::before {
 
 .back-to-top:hover {
     background: var(--primary-dark);
-    transform: translateY(-4px);
+    transform: translateY(-2px);
 }
 
 /* --- Scroll Animations (Bidirectional) --- */
@@ -3332,10 +3370,18 @@ html.light-theme .hero-gradient-text {
 }
 
 html.light-theme .hero-subtitle-new {
-    color: rgba(26, 26, 46, 0.9);
+    color: var(--text-secondary);
 }
 
 html.light-theme .hero-subtitle-new strong {
+    color: #1a1a2e;
+}
+
+html.light-theme .hero-text-link {
+    color: rgba(26, 26, 46, 0.6);
+}
+
+html.light-theme .hero-text-link:hover {
     color: #1a1a2e;
 }
 

@@ -42,7 +42,7 @@ export default function Home() {
     <>
       <Seo page="home" />
       {/* Hero Section */}
-      <section id="hero" className="hero-section" style={{ opacity: 1, visibility: 'visible', position: 'relative', minHeight: '100vh' }}>
+      <section id="hero" className="hero-section">
         <div className="beams-canvas">
           <Beams
             beamWidth={2.5}
@@ -56,8 +56,8 @@ export default function Home() {
           />
         </div>
         <div className="hero-overlay"></div>
-        <div className="hero-content" ref={heroContentRef} style={{ opacity: 1, visibility: 'visible', position: 'relative', zIndex: 2 }}>
-          <div className="hero-float-wrapper" style={{ opacity: 1, visibility: 'visible', transform: 'none' }}>
+        <div className="hero-content" ref={heroContentRef}>
+          <div className="hero-float-wrapper">
             <h1 className="hero-title-new">
               {homePage.hero.titleLine1}
               <span className="hero-gradient-text">{homePage.hero.titleGradient}</span>
@@ -67,9 +67,11 @@ export default function Home() {
               {homePage.hero.subtitle}
             </p>
           </div>
-          <div className="hero-buttons-new" style={{ display: 'flex', gap: '16px', justifyContent: 'center', flexWrap: 'wrap' }}>
+          <div className="hero-buttons-new">
             <ShimmerButton label={homePage.hero.primaryButton} onClick={() => { const el = document.getElementById('kontakt'); if (el) el.scrollIntoView({ behavior: 'smooth' }); }} />
-            <ShimmerButton label={homePage.hero.secondaryButton} onClick={() => navigate('/leistungen')} />
+            <button className="hero-text-link" onClick={() => navigate('/leistungen')}>
+              {homePage.hero.secondaryButton} <span aria-hidden="true">→</span>
+            </button>
           </div>
         </div>
       </section>
@@ -77,26 +79,11 @@ export default function Home() {
       {/* Trusted By Marquee */}
       <TrustedMarquee />
 
-      {/* CTA Section */}
-      <section className="cta-section">
-        <div className="cta-bg-effect"></div>
-        <div className="container">
-          <div className="cta-content" style={{ opacity: 1, visibility: 'visible', transform: 'none' }}>
-            <h2>{homePage.cta.heading}</h2>
-            <p>{homePage.cta.subtitle}</p>
-            <div className="cta-buttons">
-              <ShimmerButton label={homePage.cta.primaryButton} onClick={() => { const el = document.getElementById('kontakt'); if (el) el.scrollIntoView({ behavior: 'smooth' }); }} />
-              <ShimmerButton label={homePage.cta.secondaryButton} onClick={() => { window.location.href = company.phoneTel; }} />
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Kontakt Section */}
       <section id="kontakt" className="kontakt-section">
         <div className="container">
           <div className="kontakt-grid">
-            <div className="kontakt-info" style={{ opacity: 1, visibility: 'visible', transform: 'none' }}>
+            <div className="kontakt-info" data-animate="fade-right">
               <span className="section-tag">{homePage.contact.tag}</span>
               <h2 className="section-title">{homePage.contact.title}</h2>
               <p className="kontakt-text">
@@ -125,31 +112,22 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-              <div className="kontakt-social">
-                <a href={company.social.instagram} className="social-link"><i className="fab fa-instagram"></i></a>
-                <a href={company.social.linkedin} className="social-link"><i className="fab fa-linkedin-in"></i></a>
-                <a href={company.social.facebook} className="social-link"><i className="fab fa-facebook-f"></i></a>
-              </div>
             </div>
-            <div className="kontakt-form-wrapper" style={{ opacity: 1, visibility: 'visible', transform: 'none' }}>
+            <div className="kontakt-form-wrapper" data-animate="fade-left">
               <form className="kontakt-form" id="contactForm" onSubmit={handleSubmit}>
                 <div className="form-row">
                   <div className="form-group">
-                    <label htmlFor="name">{homePage.contact.form.name.label}</label>
-                    <input type="text" id="name" name="name" required placeholder={homePage.contact.form.name.placeholder} />
+                    <input type="text" id="name" name="name" required placeholder={homePage.contact.form.name.placeholder} aria-label={homePage.contact.form.name.label} />
                   </div>
                   <div className="form-group">
-                    <label htmlFor="email">{homePage.contact.form.email.label}</label>
-                    <input type="email" id="email" name="email" required placeholder={homePage.contact.form.email.placeholder} />
+                    <input type="email" id="email" name="email" required placeholder={homePage.contact.form.email.placeholder} aria-label={homePage.contact.form.email.label} />
                   </div>
                 </div>
                 <div className="form-group">
-                  <label htmlFor="phone">{homePage.contact.form.phone.label}</label>
-                  <input type="tel" id="phone" name="phone" placeholder={homePage.contact.form.phone.placeholder} />
+                  <input type="tel" id="phone" name="phone" placeholder={homePage.contact.form.phone.placeholder} aria-label={homePage.contact.form.phone.label} />
                 </div>
                 <div className="form-group">
-                  <label htmlFor="service">{homePage.contact.form.service.label}</label>
-                  <select id="service" name="service">
+                  <select id="service" name="service" aria-label={homePage.contact.form.service.label}>
                     <option value="">{homePage.contact.form.service.placeholder}</option>
                     {homePage.contact.form.service.options.map((opt) => (
                       <option key={opt} value={opt}>{opt}</option>
@@ -157,10 +135,9 @@ export default function Home() {
                   </select>
                 </div>
                 <div className="form-group">
-                  <label htmlFor="message">{homePage.contact.form.message.label}</label>
-                  <textarea id="message" name="message" rows="5" required placeholder={homePage.contact.form.message.placeholder}></textarea>
+                  <textarea id="message" name="message" rows="5" required placeholder={homePage.contact.form.message.placeholder} aria-label={homePage.contact.form.message.label}></textarea>
                 </div>
-                <div style={{ display: 'flex', justifyContent: 'center' }}>
+                <div className="form-submit-wrapper">
                   <ShimmerButton
                     label={formState === 'idle' ? homePage.contact.form.submit.default : formState === 'sending' ? homePage.contact.form.submit.loading : homePage.contact.form.submit.success}
                     onClick={() => {
