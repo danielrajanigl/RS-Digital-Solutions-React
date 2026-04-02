@@ -3333,7 +3333,7 @@ html.light-theme .hero-section {
 }
 
 html.light-theme .hero-overlay {
-    background: radial-gradient(ellipse at 50% 40%, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.55) 50%, rgba(255, 255, 255, 0.85) 100%);
+    background: radial-gradient(ellipse at 50% 40%, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.4) 50%, rgba(255, 255, 255, 0.8) 100%);
 }
 
 html.light-theme .hero-title-new {
@@ -3981,7 +3981,7 @@ html.light-theme .value-card:hover {
 /* Aurora/Beams canvas: reduce opacity in light mode */
 html.light-theme .aurora-canvas,
 html.light-theme .beams-canvas {
-    opacity: 0.20;
+    opacity: 0.30;
 }
 
 /* Smooth transitions between themes */
