@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import PageHero from '../components/PageHero';
 import CtaSection from '../components/CtaSection';
 import Seo from '../components/Seo';
-import { aboutPage } from '../content';
+import { aboutPage, ctaPerPage } from '../content';
 
 function animateCounter(element, target, duration = 2000) {
   let current = 0;
@@ -113,7 +113,7 @@ export default function About() {
         </div>
       </section>
 
-      <CtaSection />
+      <CtaSection title={ctaPerPage.about.title} subtitle={ctaPerPage.about.subtitle} />
     </>
   );
 }

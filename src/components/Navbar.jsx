@@ -136,6 +136,10 @@ export default function Navbar() {
 
       <div className={`mobile-menu-overlay${mobileOpen ? ' active' : ''}`}>
         <div className="mobile-menu-content">
+          <div className="mobile-menu-brand">
+            <Logo width={36} height={35} className="logo-svg" />
+            <span className="logo-text">{company.nameSuffix}</span>
+          </div>
           <ul className="mobile-nav-links">
             {navigation.map((item) => (
               <li key={item.path}>

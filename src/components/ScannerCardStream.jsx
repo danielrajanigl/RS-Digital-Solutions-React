@@ -9,10 +9,9 @@ function ScreenshotImg({ src, alt }) {
     <>
       {/* loading / error fallback */}
       {status !== 'loaded' && (
-        <div style={{
+        <div className="screenshot-loading" style={{
           position: 'absolute', top: 0, left: 0, width: '100%', height: '100%',
           display: 'flex', alignItems: 'center', justifyContent: 'center',
-          background: 'linear-gradient(135deg, #0f172a 0%, #1e293b 100%)',
           borderRadius: 15, color: 'rgba(255,255,255,.45)', fontSize: 13,
           fontFamily: 'monospace', flexDirection: 'column', gap: 8,
         }}>
@@ -123,6 +122,22 @@ const injectStyles = () => {
       mask-image:linear-gradient(to right,rgba(0,0,0,1) 0%,rgba(0,0,0,.8) 30%,rgba(0,0,0,.6) 50%,rgba(0,0,0,.4) 80%,rgba(0,0,0,.2) 100%);
       -webkit-mask-image:linear-gradient(to right,rgba(0,0,0,1) 0%,rgba(0,0,0,.8) 30%,rgba(0,0,0,.6) 50%,rgba(0,0,0,.4) 80%,rgba(0,0,0,.2) 100%);
       animation:glitch .1s infinite linear alternate-reverse}
+
+    .screenshot-loading{
+      background:linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    }
+    html.light-theme .screenshot-loading{
+      background:linear-gradient(135deg, #e2e8f0 0%, #f1f5f9 100%);
+    }
+
+    html.light-theme .scanner-line{
+      background:linear-gradient(to bottom, transparent, #355b8c, transparent);
+      box-shadow:0 0 10px rgba(53,91,140,0.4), 0 0 20px rgba(53,91,140,0.3), 0 0 30px rgba(53,91,140,0.2);
+    }
+
+    html.light-theme .card-wrapper .ascii-content{
+      color:rgba(53, 91, 140, 0.5);
+    }
 
     @media(max-width:768px){
       .scanner-stream-root{height:220px}

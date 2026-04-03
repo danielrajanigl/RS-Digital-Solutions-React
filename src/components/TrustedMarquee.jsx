@@ -1,25 +1,37 @@
 import { trustedBy } from '../content';
 
+function ClientItem({ client }) {
+  return (
+    <span className="marquee-client">
+      {client.logo && (
+        <img src={client.logo} alt={client.name} className="marquee-logo" loading="lazy" />
+      )}
+      {client.showName && (
+        <span className="marquee-text-logo">{client.name}</span>
+      )}
+    </span>
+  );
+}
+
 export default function TrustedMarquee() {
-  /* We duplicate the list to create a seamless infinite scroll */
   const items = [...trustedBy.clients, ...trustedBy.clients];
 
   return (
     <section className="marquee-section">
       <div className="marquee-track">
         <div className="marquee-content">
-          {items.map((name, i) => (
+          {items.map((client, i) => (
             <span key={i}>
-              {name}
-              {i < items.length - 1 && <span className="marquee-dot">●</span>}
+              <ClientItem client={client} />
+              <span className="marquee-dot">●</span>
             </span>
           ))}
         </div>
         <div className="marquee-content" aria-hidden="true">
-          {items.map((name, i) => (
+          {items.map((client, i) => (
             <span key={`dup-${i}`}>
-              {name}
-              {i < items.length - 1 && <span className="marquee-dot">●</span>}
+              <ClientItem client={client} />
+              <span className="marquee-dot">●</span>
             </span>
           ))}
         </div>

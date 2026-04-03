@@ -13,6 +13,7 @@ import Referenzen from './pages/Referenzen'
 import About from './pages/About'
 import FortyEightHours from './pages/FortyEightHours'
 import KI from './pages/KI'
+import NotFound from './pages/NotFound'
 
 class ErrorBoundary extends Component {
   constructor(props) {
@@ -70,6 +71,7 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/48h" element={<FortyEightHours />} />
           <Route path="/ki" element={<KI />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </ErrorBoundary>
       <Footer />

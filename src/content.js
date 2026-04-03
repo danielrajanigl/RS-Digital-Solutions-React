@@ -81,6 +81,11 @@ export const seo = {
         'Vom Briefing zur fertigen Website in nur zwei Tagen. Unser 48-Stunden-Versprechen für Ihren digitalen Erfolg.',
       path: '/48h',
     },
+    notFound: {
+      title: '404 – Seite nicht gefunden | RS Digital Solutions',
+      description: 'Die angeforderte Seite wurde nicht gefunden.',
+      path: '/404',
+    },
   },
 };
 
@@ -302,7 +307,7 @@ export const aboutPage = {
   ],
   stats: [
     { value: 5, suffix: '+', label: 'Jahre Erfahrung' },
-    { value: 150, suffix: '+', label: 'Projekte realisiert' },
+    { value: 15, suffix: '+', label: 'Projekte realisiert' },
     { value: 100, suffix: '%', label: 'Weiterempfehlungsrate' },
   ],
   faq: {
@@ -388,25 +393,44 @@ export const fortyEightHoursPage = {
     title: 'In <span class="highlight">4 Schritten</span> zu Ihrer Traumwebsite',
   },
   customCta: 'Jetzt in 48h online gehen',
-  customCtaTitle: 'Bereit für Ihre neue Website<br><span class="highlight">in nur 48 Stunden</span>?',
+  customCtaTitle: 'Ihre neue Website –<br><span class="highlight">in 48 Stunden live</span>. Versprochen.',
 };
 
-/* ─── CTA Section (Defaults) ─── */
+/* ─── CTA Section (Defaults + Seitenspezifisch) ─── */
 export const ctaDefaults = {
-  title: 'Bereit, Ihre digitale Präsenz<br><span class="highlight">auf das nächste Level</span> zu bringen?',
+  title: 'Bereit für eine Website,<br><span class="highlight">die Kunden bringt</span> – nicht nur gut aussieht?',
   subtitle:
-    'Lassen Sie uns in einem unverbindlichen Gespräch herausfinden, wie wir Ihr Unternehmen online nach vorne bringen können.',
+    'Ein kurzes Gespräch, null Verpflichtung – und Sie wissen genau, was möglich ist.',
   primaryButton: 'Beratungsgespräch',
   secondaryButton: 'Jetzt anrufen',
+};
+
+export const ctaPerPage = {
+  leistungen: {
+    title: 'Lassen Sie uns Ihr <span class="highlight">Projekt besprechen</span>',
+    subtitle: 'Von der Idee zur fertigen Website – erzählen Sie uns, was Sie brauchen.',
+  },
+  referenzen: {
+    title: 'Ihr Projekt könnte<br><span class="highlight">das nächste</span> sein',
+    subtitle: 'Lassen Sie uns gemeinsam etwas Großartiges schaffen.',
+  },
+  about: {
+    title: 'Lernen Sie uns kennen –<br><span class="highlight">unverbindlich</span>',
+    subtitle: 'Ein Gespräch, kein Verkaufspitch. Wir hören zu und beraten ehrlich.',
+  },
+  ki: {
+    title: 'KI-Demo für <span class="highlight">Ihre Website</span> anfragen',
+    subtitle: 'Erleben Sie live, wie ein KI-Chatbot Ihr Business unterstützen kann.',
+  },
 };
 
 /* ─── Trusted-By / Logo Marquee ─── */
 export const trustedBy = {
   label: 'Vertrauen schenken uns unter anderem',
   clients: [
-    'Akkilinc Buchhaltung',
-    'Antephaus Stuttgart',
-    'Bera Gold & Diamond',
+    { name: 'Akkilinc Buchhaltung', logo: '/logos/akkilinc.webp', showName: true },
+    { name: 'Antephaus Stuttgart', logo: '/logos/antephaus.svg', showName: true },
+    { name: 'Bera Gold & Diamond', logo: null, showName: true },
   ],
 };
 
@@ -454,6 +478,12 @@ export const ui = {
       borderHover: 'rgba(26, 26, 46, 0.3)',
       shadowHover: 'rgba(26, 26, 46, 0.15)',
     },
+  },
+  notFound: {
+    title: '404',
+    heading: 'Seite nicht gefunden',
+    text: 'Die angeforderte Seite existiert nicht oder wurde verschoben.',
+    button: 'Zur Startseite',
   },
   errorBoundary: { heading: 'Etwas ist schiefgelaufen.', message: 'Bitte laden Sie die Seite neu.' },
   scanner: { loading: 'Screenshot wird geladen…', viewProject: 'Ansehen' },

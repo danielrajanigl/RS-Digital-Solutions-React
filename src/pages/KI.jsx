@@ -3,7 +3,7 @@ import PageHero from '../components/PageHero';
 import CtaSection from '../components/CtaSection';
 import ShimmerButton from '../components/ui/shimmer-button.tsx';
 import Seo from '../components/Seo';
-import { kiPage } from '../content';
+import { kiPage, ctaPerPage } from '../content';
 
 export default function KI() {
   const navigate = useNavigate();
@@ -65,7 +65,7 @@ export default function KI() {
         </div>
       </section>
 
-      <CtaSection />
+      <CtaSection title={ctaPerPage.ki.title} subtitle={ctaPerPage.ki.subtitle} />
     </>
   );
 }

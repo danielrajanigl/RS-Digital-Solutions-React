@@ -2,7 +2,7 @@ import PageHero from '../components/PageHero';
 import CtaSection from '../components/CtaSection';
 import ScannerCardStream from '../components/ScannerCardStream';
 import Seo from '../components/Seo';
-import { referenzenPage } from '../content';
+import { referenzenPage, ctaPerPage } from '../content';
 
 export default function Referenzen() {
   return (
@@ -56,7 +56,7 @@ export default function Referenzen() {
         </div>
       </section>
 
-      <CtaSection />
+      <CtaSection title={ctaPerPage.referenzen.title} subtitle={ctaPerPage.referenzen.subtitle} />
     </>
   );
 }

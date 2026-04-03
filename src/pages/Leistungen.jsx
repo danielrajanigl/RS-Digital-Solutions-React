@@ -4,7 +4,7 @@ import PageHero from '../components/PageHero';
 import CtaSection from '../components/CtaSection';
 import ShimmerButton from '../components/ui/shimmer-button.tsx';
 import Seo from '../components/Seo';
-import { leistungenPage } from '../content';
+import { leistungenPage, ctaPerPage } from '../content';
 
 export default function Leistungen() {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -54,7 +54,7 @@ export default function Leistungen() {
         </div>
       </section>
 
-      <CtaSection />
+      <CtaSection title={ctaPerPage.leistungen.title} subtitle={ctaPerPage.leistungen.subtitle} />
     </>
   );
 }
