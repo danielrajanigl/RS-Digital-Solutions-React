@@ -388,6 +388,7 @@ export const fortyEightHoursPage = {
     title: 'In <span class="highlight">4 Schritten</span> zu Ihrer Traumwebsite',
   },
   customCta: 'Jetzt in 48h online gehen',
+  customCtaTitle: 'Bereit für Ihre neue Website<br><span class="highlight">in nur 48 Stunden</span>?',
 };
 
 /* ─── CTA Section (Defaults) ─── */
@@ -425,7 +426,18 @@ export const footer = {
 
 /* ─── UI Strings ─── */
 export const ui = {
-  themeToggle: { light: 'Light Mode', dark: 'Dark Mode' },
+  themeToggle: {
+    light: 'Light Mode',
+    dark: 'Dark Mode',
+    ariaLight: 'Light Mode aktivieren',
+    ariaDark: 'Dark Mode aktivieren',
+  },
+  theme: {
+    darkColor: '#ffffff',
+    lightColor: '#1a1a2e',
+  },
   errorBoundary: { heading: 'Etwas ist schiefgelaufen.', message: 'Bitte laden Sie die Seite neu.' },
-  scanner: { loading: 'Screenshot wird geladen…' },
+  scanner: { loading: 'Screenshot wird geladen…', viewProject: 'Ansehen' },
+  backToTop: { ariaLabel: 'Nach oben scrollen' },
+  whatsapp: { ariaLabel: 'WhatsApp Chat' },
 };

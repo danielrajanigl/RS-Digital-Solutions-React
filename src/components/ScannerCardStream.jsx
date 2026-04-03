@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef, useMemo } from 'react';
 import * as THREE from 'three';
+import { ui } from '../content';
 
 /* ─── Screenshot card with loading state ─── */
 function ScreenshotImg({ src, alt }) {
@@ -20,7 +21,7 @@ function ScreenshotImg({ src, alt }) {
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{ animation: 'spin 1.2s linear infinite' }}>
                 <path d="M21 12a9 9 0 11-6.219-8.56" />
               </svg>
-              <span>Screenshot wird geladen…</span>
+              <span>{ui.scanner.loading}</span>
             </>
           )}
           {status === 'error' && (
@@ -450,7 +451,7 @@ export default function ScannerCardStream({
                       <div className="card-overlay-desc">{project.desc}</div>
                     </div>
                     <span className="card-overlay-link">
-                      Ansehen
+                      {ui.scanner.viewProject}
                       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
                         <path d="M7 17L17 7M17 7H7M17 7V17" />
                       </svg>

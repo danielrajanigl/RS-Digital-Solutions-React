@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react';
+import { ui } from '../content';
 
 export default function ThemeToggle() {
   const [isDark, setIsDark] = useState(() => {
+    if (typeof window === 'undefined') return true;
     try {
       return localStorage.getItem('rs-theme') !== 'light';
     } catch { return true; }
@@ -15,11 +17,12 @@ export default function ThemeToggle() {
       document.documentElement.classList.add('light-theme');
       try { localStorage.setItem('rs-theme', 'light'); } catch {}
     }
+    const color = isDark ? ui.theme.darkColor : ui.theme.lightColor;
     document.querySelectorAll('.logo-svg text').forEach(t => {
-      t.setAttribute('fill', isDark ? '#ffffff' : '#1a1a2e');
+      t.setAttribute('fill', color);
     });
     document.querySelectorAll('.logo-text').forEach(el => {
-      el.style.color = isDark ? '#ffffff' : '#1a1a2e';
+      el.style.color = color;
     });
   }, [isDark]);
 
@@ -27,8 +30,8 @@ export default function ThemeToggle() {
     <button
       className="theme-toggle-btn"
       onClick={() => setIsDark(prev => !prev)}
-      aria-label={isDark ? 'Light Mode aktivieren' : 'Dark Mode aktivieren'}
-      title={isDark ? 'Light Mode' : 'Dark Mode'}
+      aria-label={isDark ? ui.themeToggle.ariaLight : ui.themeToggle.ariaDark}
+      title={isDark ? ui.themeToggle.light : ui.themeToggle.dark}
     >
       {isDark ? (
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">

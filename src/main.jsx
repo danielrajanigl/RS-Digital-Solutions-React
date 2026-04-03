@@ -4,12 +4,7 @@ import { BrowserRouter } from 'react-router-dom'
 import App from './App.jsx'
 import './style.css'
 
-// Apply saved theme immediately (before paint)
-try {
-  if (localStorage.getItem('rs-theme') === 'light') {
-    document.documentElement.classList.add('light-theme')
-  }
-} catch {}
+// Theme is initialized via inline script in index.html to prevent FOUC
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>

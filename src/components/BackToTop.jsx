@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { ui } from '../content';
 
 export default function BackToTop() {
   const [visible, setVisible] = useState(false);
@@ -10,7 +11,7 @@ export default function BackToTop() {
   }, []);
 
   return (
-    <button className={`back-to-top${visible ? ' visible' : ''}`} onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+    <button className={`back-to-top${visible ? ' visible' : ''}`} onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} aria-label={ui.backToTop.ariaLabel}>
       <i className="fas fa-chevron-up"></i>
     </button>
   );

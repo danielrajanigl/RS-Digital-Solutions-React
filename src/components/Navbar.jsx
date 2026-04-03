@@ -24,7 +24,7 @@ export default function Navbar() {
 
   // Scroll behavior
   useEffect(() => {
-    const APPEAR_THRESHOLD = window.innerHeight;
+    const APPEAR_THRESHOLD = typeof window !== 'undefined' ? window.innerHeight : 800;
     let ticking = false;
 
     const onScroll = () => {

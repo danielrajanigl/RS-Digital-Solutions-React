@@ -109,7 +109,7 @@ export default function FortyEightHours() {
       </section>
 
       <CtaSection
-        title='Bereit für Ihre neue Website<br><span class="highlight">in nur 48 Stunden</span>?'
+        title={fortyEightHoursPage.customCtaTitle}
         showPhone={true}
       />
     </>

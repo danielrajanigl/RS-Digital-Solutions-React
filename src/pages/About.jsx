@@ -46,7 +46,7 @@ export default function About() {
 
   return (
     <>
-      <Seo page="about" />
+      <Seo page="about" faqItems={aboutPage.faq.items} />
       <PageHero
         tag={aboutPage.hero.tag}
         title={aboutPage.hero.title}
