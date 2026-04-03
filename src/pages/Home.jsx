@@ -76,7 +76,7 @@ export default function Home() {
           </div>
           <div className="hero-buttons-new">
             <ShimmerButton label={homePage.hero.primaryButton} onClick={() => { const el = document.getElementById('kontakt'); if (el) el.scrollIntoView({ behavior: 'smooth' }); }} />
-            <button className="hero-text-link" onClick={() => navigate('/leistungen')}>
+            <button className="hero-text-link" onClick={() => navigate('/referenzen')}>
               {homePage.hero.secondaryButton} <span aria-hidden="true">→</span>
             </button>
           </div>

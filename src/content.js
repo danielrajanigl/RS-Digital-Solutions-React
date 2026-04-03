@@ -87,13 +87,13 @@ export const seo = {
 /* ─── Home Page ─── */
 export const homePage = {
   hero: {
-    titleLine1: 'Wir erschaffen',
-    titleGradient: 'digitale Meisterwerke',
-    titleLine3: 'für Ihr Unternehmen.',
+    titleLine1: 'Wir bauen Websites,',
+    titleGradient: 'die Kunden bringen',
+    titleLine3: '– in nur 48 Stunden.',
     subtitle:
-      'Hochprofessionelle Websites, Online-Shops & intelligente KI-Lösungen – maßgeschneidert und in nur 48 Stunden live.',
-    primaryButton: 'Projekt starten',
-    secondaryButton: 'Unsere Leistungen',
+      'Webdesign, Online-Shops & KI-Chatbots für Unternehmen, die online nicht nur dabei sein wollen – sondern dominieren.',
+    primaryButton: 'Kostenlos beraten lassen',
+    secondaryButton: 'Unsere Arbeit ansehen',
   },
   cta: {
     heading: 'Bereit, Ihre digitale Präsenz auf das nächste Level zu bringen?',
@@ -407,7 +407,6 @@ export const trustedBy = {
     'Akkilinc Buchhaltung',
     'Antephaus Stuttgart',
     'Bera Gold & Diamond',
-    'RS Digital Solutions',
   ],
 };
 

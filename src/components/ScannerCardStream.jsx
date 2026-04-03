@@ -67,7 +67,8 @@ const generateCode = (w, h) => {
 /* ─── Styles injected once ─── */
 const STYLE_ID = 'scanner-card-stream-styles';
 const injectStyles = () => {
-  if (document.getElementById(STYLE_ID)) return;
+  const existing = document.getElementById(STYLE_ID);
+  if (existing) existing.remove();
   const style = document.createElement('style');
   style.id = STYLE_ID;
   style.textContent = `
@@ -79,7 +80,7 @@ const injectStyles = () => {
     .scanner-stream-root canvas{position:absolute;top:50%;left:0;transform:translateY(-50%);width:100%;pointer-events:none}
     .scanner-stream-root .particle-canvas{height:250px;z-index:0}
     .scanner-stream-root .scanner-canvas{height:300px;z-index:10}
-    .scanner-line{position:absolute;top:50%;left:50%;height:280px;width:2px;
+    .scanner-line{position:absolute;top:50%;left:40%;height:280px;width:2px;
       transform:translate(-50%,-50%);
       background:linear-gradient(to bottom,transparent,#8b5cf6,transparent);
       border-radius:9999px;z-index:20;pointer-events:none;
@@ -239,7 +240,7 @@ export default function ScannerCardStream({
     const scanMax = 2500;
     let currentMax = baseMax;
     const createSP = () => ({
-      x: w / 2 + (Math.random() - 0.5) * 3,
+      x: w * 0.40 + (Math.random() - 0.5) * 3,
       y: Math.random() * 300,
       vx: Math.random() * 0.8 + 0.2,
       vy: (Math.random() - 0.5) * 0.3,
@@ -268,7 +269,7 @@ export default function ScannerCardStream({
 
     /* Card scan effect */
     const updateCards = () => {
-      const scanX = w / 2;
+      const scanX = w * 0.40;
       const sw = 8;
       const sl = scanX - sw / 2;
       const sr = scanX + sw / 2;
