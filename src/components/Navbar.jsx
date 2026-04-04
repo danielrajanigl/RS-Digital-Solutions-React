@@ -152,9 +152,6 @@ export default function Navbar() {
               </li>
             ))}
           </ul>
-          <div className="mobile-theme-toggle">
-            <ThemeToggle />
-          </div>
         </div>
       </div>
     </>
