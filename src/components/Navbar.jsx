@@ -19,6 +19,9 @@ export default function Navbar() {
   // Close mobile menu on route change
   useEffect(() => {
     setMobileOpen(false);
+    document.body.style.position = '';
+    document.body.style.top = '';
+    document.body.style.width = '';
     document.body.style.overflow = '';
   }, [location]);
 
@@ -77,16 +80,34 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', onScroll);
   }, [mobileOpen]);
 
+  const lockScroll = () => {
+    const scrollY = window.scrollY;
+    document.body.style.position = 'fixed';
+    document.body.style.top = `-${scrollY}px`;
+    document.body.style.width = '100%';
+    document.body.style.overflow = 'hidden';
+  };
+
+  const unlockScroll = () => {
+    const scrollY = Math.abs(parseInt(document.body.style.top || '0', 10));
+    document.body.style.position = '';
+    document.body.style.top = '';
+    document.body.style.width = '';
+    document.body.style.overflow = '';
+    window.scrollTo(0, scrollY);
+  };
+
   const toggleMobile = () => {
     setMobileOpen(prev => {
-      document.body.style.overflow = !prev ? 'hidden' : '';
+      if (!prev) lockScroll();
+      else unlockScroll();
       return !prev;
     });
   };
 
   const closeMobile = () => {
     setMobileOpen(false);
-    document.body.style.overflow = '';
+    unlockScroll();
   };
 
   const scrollToKontakt = (e) => {
