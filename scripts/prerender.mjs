@@ -191,8 +191,8 @@ async function main() {
 
     console.log("[prerender] All routes processed.");
   } catch (err) {
-    console.error("[prerender] Fatal error:", err);
-    process.exit(1);
+    console.warn("[prerender] Skipping pre-render:", err.message);
+    console.warn("[prerender] Site will work as a regular SPA.");
   } finally {
     if (browser) {
       await browser.close().catch(() => {});
