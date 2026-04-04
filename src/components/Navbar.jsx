@@ -136,6 +136,10 @@ export default function Navbar() {
       </nav>
 
       <div className={`mobile-menu-overlay${mobileOpen ? ' active' : ''}`}>
+        <button className="mobile-menu-close" onClick={closeMobile} aria-label="Menü schließen">
+          <span></span>
+          <span></span>
+        </button>
         <div className="mobile-menu-content">
           <div className="mobile-menu-brand">
             <Logo width={36} height={35} className="logo-svg" />
