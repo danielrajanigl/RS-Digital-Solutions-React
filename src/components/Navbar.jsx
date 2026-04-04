@@ -103,7 +103,8 @@ export default function Navbar() {
   const navClasses = [
     'navbar',
     navFixed ? 'nav-fixed' : '',
-    !isHome ? 'scrolled' : ''
+    !isHome ? 'scrolled' : '',
+    mobileOpen ? 'mobile-open' : ''
   ].filter(Boolean).join(' ');
 
   return (
