@@ -185,7 +185,7 @@ ul {
     pointer-events: none;
 }
 
-.navbar.mobile-open .theme-toggle {
+.navbar.mobile-open .theme-toggle-btn {
     opacity: 0;
     pointer-events: none;
 }
