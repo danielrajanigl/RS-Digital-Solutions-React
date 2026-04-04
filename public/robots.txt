@@ -1,5 +1,10 @@
 # RS Digital Solutions
 User-agent: *
 Allow: /
+Disallow: /404
 
+# Crawl-Delay (in seconds)
+Crawl-delay: 10
+
+# Sitemap
 Sitemap: https://rs-digitalsolutions.de/sitemap.xml

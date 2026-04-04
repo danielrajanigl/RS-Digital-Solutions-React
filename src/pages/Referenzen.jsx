@@ -1,8 +1,15 @@
+import { Component } from 'react';
 import PageHero from '../components/PageHero';
 import CtaSection from '../components/CtaSection';
 import ScannerCardStream from '../components/ScannerCardStream';
 import Seo from '../components/Seo';
 import { referenzenPage, ctaPerPage } from '../content';
+
+class CardErrorBoundary extends Component {
+  constructor(props) { super(props); this.state = { hasError: false }; }
+  static getDerivedStateFromError() { return { hasError: true }; }
+  render() { return this.state.hasError ? null : this.props.children; }
+}
 
 export default function Referenzen() {
   return (
@@ -22,7 +29,9 @@ export default function Referenzen() {
             <h2 className="section-title" dangerouslySetInnerHTML={{ __html: referenzenPage.projectsSection.title }}></h2>
           </div>
           <div style={{ marginTop: '3rem' }} data-animate="fade-up">
-            <ScannerCardStream projects={referenzenPage.projects} />
+            <CardErrorBoundary>
+              <ScannerCardStream projects={referenzenPage.projects} />
+            </CardErrorBoundary>
           </div>
         </div>
       </section>
