@@ -351,7 +351,7 @@ ul {
     flex-direction: column;
     gap: 6px;
     cursor: pointer;
-    z-index: 1001;
+    z-index: 1003;
     padding: 4px;
     flex-shrink: 0;
 }
