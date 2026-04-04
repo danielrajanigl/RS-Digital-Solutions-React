@@ -620,7 +620,6 @@ html.light-theme section + section::before {
 }
 
 .hero-gradient-text {
-    display: block;
     font-weight: 900;
     background: linear-gradient(135deg,
         #5f83b3 0%,

@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Beams from '../components/Beams';
 import ShimmerButton from '../components/ui/shimmer-button.tsx';
+import BlurText from '../components/ui/BlurText';
 import Seo from '../components/Seo';
 import TrustedMarquee from '../components/TrustedMarquee';
 import { homePage, company } from '../content';
@@ -65,11 +66,15 @@ export default function Home() {
         <div className="hero-overlay"></div>
         <div className="hero-content" ref={heroContentRef}>
           <div className="hero-float-wrapper">
-            <h1 className="hero-title-new">
-              {homePage.hero.titleLine1}
-              <span className="hero-gradient-text">{homePage.hero.titleGradient}</span>
-              {homePage.hero.titleLine3}
-            </h1>
+            <BlurText
+              text={`${homePage.hero.titleLine1} ${homePage.hero.titleGradient} ${homePage.hero.titleLine3}`}
+              className="hero-title-new"
+              delay={80}
+              animateBy="words"
+              direction="top"
+              stepDuration={0.35}
+              highlight={{ text: homePage.hero.titleGradient, className: 'hero-gradient-text' }}
+            />
             <p className="hero-subtitle-new">
               {homePage.hero.subtitle}
             </p>
