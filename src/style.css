@@ -180,6 +180,16 @@ ul {
     z-index: 1003;
 }
 
+.navbar.mobile-open .nav-logo {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.navbar.mobile-open .theme-toggle {
+    opacity: 0;
+    pointer-events: none;
+}
+
 .navbar.scrolled {
     background: rgba(0, 0, 0, 0.7);
     backdrop-filter: blur(20px);
